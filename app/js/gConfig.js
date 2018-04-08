@@ -30,6 +30,9 @@ const config = {
         rows: height / 10,
         columns: width / 10
     },
+    snakeObj:{
+        defaultSize: 3
+    },
     snakeDirections: {
         default: 0,
         right: 0,
