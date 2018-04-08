@@ -1,8 +1,9 @@
 const render = require("./render.js");
 module.exports = function () {
-	
+
 	const btn = document.getElementById('btn');
 	btn.addEventListener("click", function(){
+		console.log("Game Start Baybeh!!");
 		render._run();
 	});
 
@@ -43,7 +44,5 @@ module.exports = function () {
 				}
 			break;
 		}
-      }
-
-
+	}
 };

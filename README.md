@@ -13,6 +13,6 @@
     * *remember references are rooted in location of the index.html file!*
 
 ##How to add assets (images, audio, html)
-    * add the file in app/assets directory
-    * images should be placed in app/assets/img
-    * audio should be placed in app/assets/audio
+    * add the html files in app/static/ directory
+    * images should be placed in app/static/assets/img
+    * audio should be placed in app/static/assets/audio

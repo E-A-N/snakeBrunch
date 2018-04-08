@@ -1,4 +1,4 @@
-const conf = require("./gameConfig");
+const conf = require("./gameConfig.js");
 const mycanvas = conf.mycanvas;
 const ctx = conf.ctx;
 var w = conf.w;
@@ -7,7 +7,8 @@ var score = conf.score;
 var snake = conf.snake;
 var snakeSize = conf.snakeSize;
 var food = conf.food;
-
+var gameLoop = {};
+var direction = "down";
 
 var bodySnake = function(x, y) {
     ctx.fillStyle = 'green';
@@ -24,17 +25,25 @@ var pizza = function(x, y) {
 }
 
 var scoreText = function() {
-var score_text = "Score: " + score;
-ctx.fillStyle = 'blue';
-ctx.fillText(score_text, 145, h-5);
+    var score_text = "Score: " + score;
+    ctx.fillStyle = 'blue';
+    ctx.fillText(score_text, 145, h-5);
 }
 
 var drawSnake = function() {
-  var length = 4;
-  snake = [];
-  for (var i = length-1; i>=0; i--) {
+    var length = 4;
+    snake = [];
+    for (var i = length-1; i>=0; i--) {
       snake.push({x:i, y:0});
-  }
+    }
+}
+
+var runGameOver = function(id){
+    //restart game
+    btn.removeAttribute('disabled', true);
+
+    ctx.clearRect(0,0,w,h);
+    clearInterval(id);
 }
 
 var paint = function(){
@@ -64,10 +73,7 @@ var paint = function(){
     const gameOver = snakeX == -1 || snakeX == w/snakeSize || snakeY == -1 || snakeY == h/snakeSize || checkCollision(snakeX, snakeY, snake)
     if (gameOver) {
         //restart game
-        btn.removeAttribute('disabled', true);
-
-        ctx.clearRect(0,0,w,h);
-        gameloop = clearInterval(gameloop);
+        runGameOver(gameLoop.id);
         return;
     }
 
@@ -117,14 +123,14 @@ var checkCollision = function(x, y, array) {
   }
   return false;
 }
-
+var run = function(){
+    drawSnake();
+    createFood();
+    gameloop.id = setInterval(paint, 80);
+}
 var init = {
     direction: 'down',
-    _run: function(){
-      drawSnake();
-      createFood();
-      gameloop = setInterval(paint, 80);
-    }
+    _run: run
 };
 
 module.exports = init;
