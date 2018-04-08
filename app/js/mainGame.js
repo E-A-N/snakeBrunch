@@ -4,10 +4,8 @@ module.exports = (config, stage, renderer) => {
     var direction = 0;
 
     const gameMap = require("./utilities/gameMap.js")(config);
-    //
-    gameMap.generateFood(gameMap.map)
-      .showMap();
-
+    gameMap.cleanMap()
+        .generateFood();
 
     stage.clearRect(0, 0, config.gameWidth, config.gameHeight);
     renderer(config, stage, {score: score, level: level});
