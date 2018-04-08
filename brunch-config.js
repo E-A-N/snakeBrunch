@@ -1,7 +1,7 @@
 // See http://brunch.io for documentation.
-exports.conventions = {
-    assets: "app/static/**"
-};
+// exports.conventions = {
+//     assets: "app/static/**"
+// };
 
 exports.files = {
   javascripts: {
