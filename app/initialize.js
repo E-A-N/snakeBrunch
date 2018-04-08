@@ -5,5 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const config = require("./js/gConfig.js");
   const stage = require("./js/stageUI.js")(config);
   const renderer = require("./js/render.js")(config, stage.ctx);
-  renderer(config, stage.ctx, {score: 0, level: 0});
+  //example call -> renderer(config, stage.ctx, {score: 0, level: 0});
+
+  const main = require("./js/mainGame.js")(config, stage.ctx, renderer)
 });

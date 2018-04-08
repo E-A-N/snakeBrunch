@@ -25,6 +25,10 @@ const config = {
         style : "14px Arial",
         xPos: scoreX,
         yPos: scoreY
+    },
+    gameMap :{
+        rows: width / 10,
+        columns: height / 10
     }
 }
 
