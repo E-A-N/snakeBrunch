@@ -2,5 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // do your setup here
   console.log('Initialized app');
 
-  require("./js/app.js")();
+  const config = require("./js/gConfig.js");
+  require("./js/stageUI.js")(config);
 });
