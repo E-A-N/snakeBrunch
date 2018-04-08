@@ -27,8 +27,15 @@ const config = {
         yPos: scoreY
     },
     gameMap :{
-        rows: width / 10,
-        columns: height / 10
+        rows: height / 10,
+        columns: width / 10
+    },
+    snakeDirections: {
+        default: 0,
+        right: 0,
+        left: 1,
+        down: 2,
+        up: 3
     }
 }
 

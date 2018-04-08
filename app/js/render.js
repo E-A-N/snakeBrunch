@@ -12,7 +12,6 @@ const render = (config, stage, args = {}) => {
       const gCaption = `Score: ${score} ~ Level: ${level}`;
       stage.fillText(gCaption, config.scoreBoard.xPos, config.scoreBoard.yPos);
     }
-    console.log("Game has rendered!!",config);
 }
 
 module.exports = (config, stage, score = 0, level = 0) => {
