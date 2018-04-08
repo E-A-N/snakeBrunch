@@ -1,13 +1,8 @@
 const gameMap = function(config) {
-    this.map = new Array(config.gameMap.columns);
-    console.log(this.map);
-    this.map = this.map.map((n) =>{
-        const newRay = new Array(config.gameMap.rows);
-        newRay.fill(0,0);
-        return newRay;
+    this.map = [...Array(config.gameMap.columns).keys()];
+    this.map = this.map.map((n) => {
+        return [...Array(config.gameMap.rows).keys()];
     });
-    //this.map[4] = "Hi!!";
-    console.log(this.map);
 
     this.config = config;
 };
@@ -30,11 +25,6 @@ gameMap.prototype.generateFood = function(map){
 
 gameMap.prototype.showMap = function(){
     console.log("...printing map", this.map);
-    this.map.forEach(n => {
-        console.log(n);
-        1 + 1;
-    })
-
     return this;
 }
 
