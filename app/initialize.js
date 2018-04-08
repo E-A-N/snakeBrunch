@@ -1,4 +1,4 @@
-const newb = require("newbie.js");
+const newb = require("./js/newbie.js");
 
 document.addEventListener('DOMContentLoaded', () => {
   // do your setup here
