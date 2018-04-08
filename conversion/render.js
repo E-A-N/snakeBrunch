@@ -1,4 +1,13 @@
 const conf = require("./gameConfig");
+const mycanvas = conf.mycanvas;
+const ctx = conf.ctx;
+var w = conf.w;
+var h = conf.h;
+var score = conf.score;
+var snake = conf.snake;
+var snakeSize = conf.snakeSize;
+var food = conf.food;
+
 
 var bodySnake = function(x, y) {
     ctx.fillStyle = 'green';
@@ -109,11 +118,13 @@ var checkCollision = function(x, y, array) {
   return false;
 }
 
-var init = function(){
-  direction = 'down';
-  drawSnake();
-  createFood();
-  gameloop = setInterval(paint, 80);
-}
+var init = {
+    direction: 'down',
+    _run: function(){
+      drawSnake();
+      createFood();
+      gameloop = setInterval(paint, 80);
+    }
+};
 
 module.exports = init;

@@ -1,8 +1,10 @@
 const render = require("./render.js");
 module.exports = function () {
-
-var btn = document.getElementById('btn');
-btn.addEventListener("click", function(){ render.init();});
+	
+	const btn = document.getElementById('btn');
+	btn.addEventListener("click", function(){
+		render._run();
+	});
 
 	document.onkeydown = function(event) {
 		const left = 37;
