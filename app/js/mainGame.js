@@ -1,12 +1,13 @@
 
 
-module.exports = (config, ctx, renderer) => {
-    var score = 495;
-    var level = 0;
+module.exports = (config, ctx) => {
+    var score = 7;
+    var level = 1;
     var direction = 0;
 
     const snakeObj = require("./utilities/snakeObj.js")(config);
     const gameMap = require("./utilities/gameMap.js")(config);
+    const renderer = require("./render.js")(ctx, config);
 
     snakeObj.randomizePosition();
     gameMap.cleanMap()
@@ -14,5 +15,8 @@ module.exports = (config, ctx, renderer) => {
          .processSnake(snakeObj)
     //     .printMatrix()
 
-    renderer(config, ctx, gameMap, {score: score, level: level});
+    renderer.clean()
+        .drawBorders()
+        .drawScore(score, level)
+        .drawMap(gameMap)
 };
