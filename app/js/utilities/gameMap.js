@@ -35,8 +35,20 @@ gameMap.prototype.generateFood = function(){
     return this; //setup method chaining
 };
 
-gameMap.prototype.showMap = function(){
-    console.log("...printing map", this.map);
+gameMap.prototype.printMatrix = function(){
+    var y = 0;
+    var trix = '';
+    while (y < this.config.gameMap.rows){
+        for (var x = 0; x < this.map.length; x++){
+            trix = trix + this.map[x][y].toString();
+        }
+        trix = trix + "\n";
+        y++;
+    }
+    console.clear();
+    console.log("~~~~~printing matrix~~~~~");
+    console.log(trix);
+
     return this;
 };
 

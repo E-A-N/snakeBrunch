@@ -5,7 +5,11 @@ module.exports = (config, stage, renderer) => {
 
     const gameMap = require("./utilities/gameMap.js")(config);
     gameMap.cleanMap()
-        .generateFood();
+        .printMatrix()
+        .printMatrix()
+        .generateFood()
+        .printMatrix()
+        
 
     stage.clearRect(0, 0, config.gameWidth, config.gameHeight);
     renderer(config, stage, {score: score, level: level});
