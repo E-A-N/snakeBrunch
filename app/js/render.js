@@ -20,26 +20,16 @@ const render = (config, ctx, field, args = {}) => {
     //Render the game object
     field.map.map( (col, x) => {
         col.map( (row , y) => {
-            let coordinate = field.map[x][y];
-            switch (coordinate){
-                case 1:
-                    ctx.fillStyle = config.renderer.foodColor;
-                    let block = config.renderer.blockSize;
-                    let yBoundry = Math.max(y * block + config.renderer.yOffset, 180);        
-                    console.log("Y coord is:",yBoundry)
-                    let  foodGraphic = [x * block, yBoundry, block, block];
-                    ctx.fillRect(...foodGraphic);
-                break;
+            let coord = field.map[x][y];
+            if (coord === 0) return;
 
-                case 2:
-                    ctx.fillStyle = config.renderer.snakeColor;
-                    let block = config.renderer.blockSize;
-                    let yBoundry = Math.max(y * block + config.renderer.yOffset, 180);
-                    console.log("Y coord is:",yBoundry);
-                    let snakeGraphic = [x * block, yBoundry, block, block];
-                    ctx.fillRect(...snakeGraphic);
-                break;
-            }
+            let block = config.renderer.blockSize;
+            let yBoundry = Math.min(y * block + config.renderer.yOffset, config.renderer.yBoundry);
+            let xBoundry = Math.min(x * block + config.renderer.xOffset, config.renderer.xBoundry);
+            let blockGraphic = [xBoundry, yBoundry, block, block];
+
+            ctx.fillStyle = coord === 1 ? config.renderer.foodColor : config.renderer.snakeColor;
+            ctx.fillRect(...blockGraphic);
         });
     });
 

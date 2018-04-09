@@ -42,6 +42,9 @@ const config = {
     },
     renderer: {
         yOffset: 20,
+        xOffset: 3,
+        yBoundry: 185,
+        xBoundry: 187,
         blockSize: 10,
         foodColor: "red",
         snakeColor: "green"
