@@ -1,6 +1,6 @@
 ## How to run:
-    * `npm start` *or* `brunch watch`
-    * Open a browser and go to http//:127.0.0.1:3333 *or* localhost:3333
+   * `npm start` *or* `brunch watch`
+   * Open a browser and go to http//:127.0.0.1:3333 *or* localhost:3333
 
 ## How to add a js module
    * add the js file to the /app/js directory
