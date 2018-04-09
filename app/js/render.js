@@ -19,7 +19,7 @@ const render = (config, ctx, field, args = {}) => {
 
     //Render the game object
     field.map.map( (col, x) => {
-        col.map( (row , y) => {
+        col.map( (row, y) => {
             let coord = field.map[x][y];
             if (coord === 0) return;
 
