@@ -1,4 +1,4 @@
-# How to run:
+## How to run:
     * `npm start` *or* `brunch watch`
     * Open a browser and go to http//:127.0.0.1:3333 *or* localhost:3333
 
