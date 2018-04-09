@@ -14,18 +14,19 @@ snakeObj.prototype.randomizePosition = function(){
     randomX = randomX < 0 ? 0 : randomX;
     randomY = randomY < 0 ? 0 : randomY;
 
-    while (randomX - this.size < 0){
+    while (randomX - this.size < 0) {
         randomX = Math.round(Math.random() * cols - 1);
         randomX = randomX < 0 ? 0 : randomX;
     };
 
+    //TODO mark the map with body parts that aren't the head
     this.body = this.body.map( (part, order) => {
         return {x: randomX - order, y: randomY};
-        //TODO mark the map with this body part
     })
 
+    this.headPosition = [randomX, randomY];
     return [randomX, randomY];
-}
+};
 
 module.exports = (config) => {
     return new snakeObj(config);

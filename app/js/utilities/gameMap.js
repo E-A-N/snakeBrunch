@@ -52,6 +52,16 @@ gameMap.prototype.printMatrix = function(){
     return this;
 };
 
+gameMap.prototype.processSnake = function(snake){
+    var self = this;
+    snake.body.forEach(b => {
+        self.map[b.x][b.y] = 2;
+        console.log(b);
+    });
+    console.log("Snake has been processed!!");
+    return this;
+}
+
 gameMap.prototype.cleanMap = function(){
     this.map = this.map.map(x => {
         return x.map( y => {

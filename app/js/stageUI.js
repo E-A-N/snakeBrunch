@@ -12,5 +12,5 @@ module.exports = (config, ) => {
     div.appendChild(canvas);
     document.body.appendChild(div);
 
-    return {"ctx": ctx, "div" : div};
+    return ctx;
 }
