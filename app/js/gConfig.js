@@ -39,6 +39,13 @@ const config = {
         left: 1,
         down: 2,
         up: 3
+    },
+    renderer: {
+        yOffset: 20,
+        blockSize: 10,
+        foodColor: "red",
+        snakeColor: "green"
+
     }
 }
 

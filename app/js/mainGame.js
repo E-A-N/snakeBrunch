@@ -1,3 +1,5 @@
+
+
 module.exports = (config, ctx, renderer) => {
     var score = 495;
     var level = 0;
@@ -8,10 +10,9 @@ module.exports = (config, ctx, renderer) => {
 
     snakeObj.randomizePosition();
     gameMap.cleanMap()
-        .generateFood()
-        .printMatrix()
-        .processSnake(snakeObj)
-        .printMatrix()
+         .generateFood()
+         .processSnake(snakeObj)
+    //     .printMatrix()
 
-    renderer(config, ctx, {score: score, level: level});
+    renderer(config, ctx, gameMap, {score: score, level: level});
 };
