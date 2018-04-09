@@ -47,8 +47,9 @@ const config = {
         xBoundry: 187,
         blockSize: 10,
         foodColor: "red",
-        snakeColor: "green"
-
+        snakeColor: "green",
+        gameOverStyle: '16px Arial',
+        finalScoreStyle: "20px sans-serif"
     }
 }
 

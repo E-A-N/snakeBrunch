@@ -19,4 +19,5 @@ module.exports = (config, ctx) => {
         .drawBorders()
         .drawScore(score, level)
         .drawMap(gameMap)
+        .drawGameOver(score)
 };

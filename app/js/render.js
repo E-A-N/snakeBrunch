@@ -36,9 +36,30 @@ render.prototype.drawMap = function(field){
 
     return this;
 };
+render.prototype.drawGameOver = function(score){
 
-module.exports = (config, ctx, score = 0, level = 0) => {
-    return new render(config, ctx, score, level);
+  // Clear the canvas
+  this.ctx.fillStyle = 'black';
+  this.ctx.font = this.config.renderer.gameOverStyle;
+  const gameOverText = [
+      "Game Over!",
+      ((this.config.gameWdith /2) - (this.ctx.measureText("Game Over!").width/2)),
+      50
+  ];
+  this.ctx.fillText(...gameOverText);
+
+  this.ctx.font = this.config.renderer.finalScoreStyle;
+  const finalScoreText = [
+      "Your Score Was " + score,
+      ((this.config.gameWidth /2) - (this.ctx.measureText("Yoiur Score Was").width/2)),
+      70
+  ];
+  this.ctx.fillText(...finalScoreText);
+
+  console.log("Score has been drawn!!");
+};
+module.exports = (config, ctx) => {
+    return new render(config, ctx);
 }
 
 
