@@ -9,6 +9,7 @@ module.exports = (config, ctx) => {
     const gameMap = require("./utilities/gameMap.js")(config);
     const renderer = require("./render.js")(ctx, config);
 
+    snakeObj.init();
     snakeObj.randomizePosition();
     gameMap.cleanMap()
          .generateFood()

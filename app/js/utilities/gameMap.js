@@ -58,9 +58,33 @@ gameMap.prototype.processSnake = function(snake){
         console.log("Index is:",index);
 
         let isSnakeHead = index === 0;
-        if (isSnakeHead){
-            switch(b.direction){
-              
+        if (isSnakeHead) {
+            const right = 0;
+            const left  = 1;
+            const up    = 2;
+            const down  = 3;
+            switch(b.direction) {
+                case right:
+                    b.dx = 1;
+                    b.dy = 0;
+                break;
+
+                case left:
+                    b.dx = -1;
+                    b.dy = 0;
+                break;
+
+                case up:
+                    b.dx = 0;
+                    b.dy = -1;
+                break;
+
+                case down:
+                    b.dx = 0;
+                    b.dy = 1;
+                break;
+
+                console.log("head is:",b);
             }
 
             const notInBounds = !(b.x < 0 || b.x >= 20 || b.y < 0 || b.y >= 20);

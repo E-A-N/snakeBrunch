@@ -7,7 +7,7 @@ const snakeObj = function(config){
     this.dy = 0;
 };
 
-snakeObj.init = function(){
+snakeObj.prototype.init = function(){
     this.body = this.body.map( (part, order) => {
         var x = typeof part.x === "undefined" ? 0 : part.x;
         var y = typeof part.y === "undefined" ? 0 : part.y;
@@ -19,6 +19,8 @@ snakeObj.init = function(){
        if (isHead){
             //Add special property for head node
            attributes.direction = 0;
+           attributes.dx = 0;
+           attributes.dy = 0;
        }
 
         return attributes;
@@ -40,7 +42,10 @@ snakeObj.prototype.randomizePosition = function(){
 
     //TODO mark the map with body parts that aren't the head
     this.body = this.body.map( (part, order) => {
-        return {x: randomX - order, y: randomY};
+        part.x = randomX - order;
+        part.y = randomY
+        console.log(part);
+        return part;
     })
 
     this.headPosition = [randomX, randomY];
