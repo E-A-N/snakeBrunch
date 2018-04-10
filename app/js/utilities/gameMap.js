@@ -54,7 +54,21 @@ gameMap.prototype.printMatrix = function(){
 
 gameMap.prototype.processSnake = function(snake){
     var self = this;
-    snake.body.forEach(b => {
+    snake.body.forEach( (b, index) => {
+        console.log("Index is:",index);
+
+        let isSnakeHead = index === 0;
+        if (isSnakeHead){
+            switch(b.direction){
+              
+            }
+
+            const notInBounds = !(b.x < 0 || b.x >= 20 || b.y < 0 || b.y >= 20);
+            if (notInBounds){
+                return "gameOver";
+            }
+        }
+
         self.map[b.x][b.y] = 2;
     });
     console.log("Snake has been processed!!");

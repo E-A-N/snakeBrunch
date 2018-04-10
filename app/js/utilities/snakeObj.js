@@ -3,8 +3,27 @@ const snakeObj = function(config){
     this.size = config.snakeObj.defaultSize;
     this.body = [...Array(this.size).keys()]; //parts that follow snake head
     this.config = config;
+    this.dx = 0;
+    this.dy = 0;
 };
 
+snakeObj.init = function(){
+    this.body = this.body.map( (part, order) => {
+        var x = typeof part.x === "undefined" ? 0 : part.x;
+        var y = typeof part.y === "undefined" ? 0 : part.y;
+        var attributes = {
+            x:x,
+            y:y
+       };
+       var isHead = order === 0;
+       if (isHead){
+            //Add special property for head node
+           attributes.direction = 0;
+       }
+
+        return attributes;
+    })
+}
 snakeObj.prototype.randomizePosition = function(){
     const cols = this.config.gameMap.columns;
     const rows = this.config.gameMap.rows;
