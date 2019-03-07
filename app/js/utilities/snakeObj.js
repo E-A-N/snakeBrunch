@@ -51,6 +51,46 @@ snakeObj.prototype.randomizePosition = function(){
     this.headPosition = [randomX, randomY];
     return [randomX, randomY];
 };
+snakeObj.prototype.move = function(call){
+
+    let head = this.body[0];
+
+    //store current head position
+    let previousNodePosition = {
+        x: head.x,
+        y: head.y
+    };
+
+    //Move initial head direction
+    head.x += head.dx;
+    head.y += head.dy;
+
+    //every subsequent body part should inherit direciton of previous body part
+    this.body = this.body.map( (node, order) => {
+        let isNotHead = order !== 0;
+        if (isNotHead){
+            let nextNodePosition = {
+                x: node.x,
+                y: node.y
+            };
+
+            node.x = previousNodePosition.x;
+            node.y = previousNodePosition.y;
+            previousNodePosition = nextNodePosition;
+        };
+
+        return node;
+    });
+
+    return this;
+};
+snakeObj.prototype.setDirection = function (direction, call){
+    this.body[0].dx = direction.x;
+    this.body[0].dy = direction.y;
+
+    return this;
+};
+
 
 module.exports = (config) => {
     return new snakeObj(config);

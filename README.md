@@ -20,3 +20,15 @@
    * add the html files in app/static/ directory
    * images should be placed in app/static/assets/img
    * audio should be placed in app/static/assets/audio
+
+
+# API
+Snake Movement:
+```javascript
+    //input movement to snake,
+    snake.move(direction);
+    //store the new coordinates in the gamemap
+    gameMap.processSnake(snake);
+    //render the gameMap
+    renderer.drawMap(gameMap);
+```

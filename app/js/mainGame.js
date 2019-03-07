@@ -16,15 +16,35 @@ module.exports = (config, ctx) => {
          .processSnake(snakeObj)
     //     .printMatrix()
 
-    renderer.clean()
+    renderer
+        .clean()
         .drawBorders()
         .drawScore(score, level)
-        .drawMap(gameMap)
+        .drawMap(gameMap);
 
+    const gameCycle = (input) => {
+        console.log("Starting Game Cycle!");
+        //handle snake player
+        snakeObj
+            .setDirection(input)
+            .move();
 
+        //Process prepare map coordinates for renderer
+        gameMap
+            .cleanMap()
+            .processSnake(snakeObj);
+
+        //render game
+        renderer
+            .clean()
+            .drawBorders()
+            .drawScore(score, level)
+            .drawMap(gameMap);
+    };
     return {
         snake: snakeObj,
         map: gameMap,
-        renderer: renderer
+        renderer: renderer,
+        cycle: gameCycle
     };
 };

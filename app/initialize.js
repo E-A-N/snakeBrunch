@@ -8,4 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //example call -> renderer(config, stage.ctx, {score: 0, level: 0});
 
   const main = require("./js/mainGame.js")(config, stage);
+  console.log("Main is:", main);
+  window._main = main;
+  
 });
