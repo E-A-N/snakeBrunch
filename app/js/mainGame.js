@@ -21,4 +21,10 @@ module.exports = (config, ctx) => {
         .drawScore(score, level)
         .drawMap(gameMap)
 
+
+    return {
+        snake: snakeObj,
+        map: gameMap,
+        renderer: renderer
+    };
 };

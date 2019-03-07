@@ -54,7 +54,7 @@ gameMap.prototype.printMatrix = function(){
 
 gameMap.prototype.processSnake = function(snake){
     var self = this;
-    snake.body.forEach( (b, index) => {
+    snake.body.forEach( (node, index) => {
         console.log("Index is:",index);
 
         let isSnakeHead = index === 0;
@@ -63,39 +63,39 @@ gameMap.prototype.processSnake = function(snake){
             const left  = 1;
             const up    = 2;
             const down  = 3;
-            switch(b.direction) {
+            switch(node.direction) {
                 case right:
-                    b.dx = 1;
-                    b.dy = 0;
+                    node.dx = 1;
+                    node.dy = 0;
                 break;
 
                 case left:
-                    b.dx = -1;
-                    b.dy = 0;
+                    node.dx = -1;
+                    node.dy = 0;
                 break;
 
                 case up:
-                    b.dx = 0;
-                    b.dy = -1;
+                    node.dx = 0;
+                    node.dy = -1;
                 break;
 
                 case down:
-                    b.dx = 0;
-                    b.dy = 1;
+                    node.dx = 0;
+                    node.dy = 1;
                 break;
 
                 console.log("head is:",b);
             }
 
-            const notInBounds = !(b.x < 0 || b.x >= 20 || b.y < 0 || b.y >= 20);
+            const notInBounds = !(node.x < 0 || node.x >= 20 || node.y < 0 || node.y >= 20);
             if (notInBounds){
-                return "gameOver";
+                console.log("Game over!");
             }
         }
 
-        self.map[b.x][b.y] = 2;
+        self.map[node.x][node.y] = 2;
     });
-    console.log("Snake has been processed!!");
+    console.log("Snake has been processed!!", snake.body[0].x, snake.body[0].y);
     return this;
 }
 
