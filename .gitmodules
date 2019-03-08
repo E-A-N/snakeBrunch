@@ -1,0 +1,3 @@
+[submodule "app/js/utilities/jsKeyCodes"]
+	path = app/js/utilities/jsKeyCodes
+	url = https://github.com/e-a-n/jsKeyCodes
