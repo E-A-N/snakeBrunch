@@ -1,4 +1,4 @@
-module.exports = (config, ) => {
+module.exports = (config) => {
     //Construct the UI
     const div = document.createElement("div");
     const canvas = document.createElement("canvas");

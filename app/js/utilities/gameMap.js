@@ -4,6 +4,11 @@ const gameMap = function(config) {
         return [...Array(config.gameMap.rows).keys()];
     });
     this.foodPosition = null;
+    this.states = {
+        gamePlay: 0,
+        gameOver: 1
+    };
+    this.currentState = this.states.gamePlay;
 
     this.config = config;
 };
@@ -55,7 +60,6 @@ gameMap.prototype.printMatrix = function(){
 gameMap.prototype.processSnake = function(snake){
     var self = this;
     snake.body.forEach( (node, index) => {
-        console.log("Index is:",index);
 
         let isSnakeHead = index === 0;
         if (isSnakeHead) {
@@ -84,19 +88,24 @@ gameMap.prototype.processSnake = function(snake){
                     node.dy = 1;
                 break;
 
-                console.log("head is:",b);
-            }
 
-            const notInBounds = !(node.x < 0 || node.x >= 20 || node.y < 0 || node.y >= 20);
+            }
+            console.log("head is:", node);
+            let yOffset = node.y + node.dy;
+            let xOffset = node.x + node.dx;
+            const notInBounds = (node.x < 0 || xOffset > 20 || node.y < 0 || yOffset > 17); //TODO: set explicit stage coordinates in config
             if (notInBounds){
                 console.log("Game over!");
+                self.currentState = self.states.gameOver;
             }
         }
 
-        self.map[node.x][node.y] = 2;
+        if (self.currentState === self.states.gamePlay) {
+            self.map[node.x][node.y] = 2;
+        }
     });
     console.log("Snake has been processed!!", snake.body[0].x, snake.body[0].y);
-    return this;
+    return this; //check gameOver state afterwards
 }
 
 gameMap.prototype.cleanMap = function(){
