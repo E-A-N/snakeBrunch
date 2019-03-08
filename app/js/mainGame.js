@@ -9,20 +9,29 @@ module.exports = (config, ctx) => {
     const gameMap = require("./utilities/gameMap.js")(config);
     const renderer = require("./render.js")(ctx, config);
 
-    snakeObj.init();
-    snakeObj.randomizePosition();
-    gameMap.cleanMap()
-         .generateFood()
-         .processSnake(snakeObj)
-    //     .printMatrix()
+    //Should always be called first
+    const gameInit = (call) => {
+        snakeObj.init();
+        snakeObj.randomizePosition();
+        gameMap.cleanMap()
+             .generateFood()
+             .processSnake(snakeObj)
+        //     .printMatrix()
 
-    renderer
-        .clean()
-        .drawBorders()
-        .drawScore(score, level)
-        .drawMap(gameMap);
+        renderer
+            .clean()
+            .drawBorders()
+            .drawScore(score, level)
+            .drawMap(gameMap);
 
-    const gameCycle = (input) => {
+        if (typeof call === "function"){
+            call(snakeObj, gameMap);
+        }
+    }
+
+
+    const gameCycle = (call) => {
+        requestAnimationFrame(gameCycle);
         console.log("Starting Game Cycle!");
         //handle snake player
         snakeObj
@@ -40,11 +49,16 @@ module.exports = (config, ctx) => {
             .drawBorders()
             .drawScore(score, level)
             .drawMap(gameMap);
+
+            if (typeof call === "function"){
+                call(snakeObj, gameMap);
+            }
     };
     return {
         snake: snakeObj,
         map: gameMap,
         renderer: renderer,
+        init: gameInit,
         cycle: gameCycle
     };
 };
