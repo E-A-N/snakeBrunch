@@ -5,6 +5,7 @@ const snakeObj = function(config){
     this.config = config;
     this.dx = 0;
     this.dy = 0;
+    this.direction = 5;
 };
 
 snakeObj.prototype.init = function(){
@@ -85,8 +86,36 @@ snakeObj.prototype.move = function(call){
     return this;
 };
 snakeObj.prototype.setDirection = function (direction, call){
-    this.body[0].dx = direction.x;
-    this.body[0].dy = direction.y;
+    switch(direction){
+        case 8:
+            this.body[0].dx = 0;
+            this.body[0].dy = -1;
+            this.direction = direction;
+        break;
+
+        case 2:
+            this.body[0].dx = 0;
+            this.body[0].dy = 1;
+            this.direction = direction;
+        break;
+
+        case 4:
+            this.body[0].dx = -1;
+            this.body[0].dy = 0;
+            this.direction = direction;
+        break;
+
+        case 6:
+            this.body[0].dx = 1;
+            this.body[0].dy = 0;
+            this.direction = direction;
+        break;
+
+        case -1:
+            this.setDirection(this.direction);
+        break;
+    }
+
 
     return this;
 };

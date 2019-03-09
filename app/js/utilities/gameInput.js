@@ -1,21 +1,35 @@
-let keycode = require("./jsKeyCodes/keyCodes.js")("up arrow");
-window.upKey  = require("./jsKeyCodes/keyboard.js")(keycode);
+let upCode = require("./jsKeyCodes/keyCodes.js")("up arrow");
+let downCode = require("./jsKeyCodes/keyCodes.js")("down arrow");
+let leftCode = require("./jsKeyCodes/keyCodes.js")("left arrow");
+let rightCode = require("./jsKeyCodes/keyCodes.js")("right arrow");
 
-console.log(keycode, upKey, window);
+let upKey  = require("./jsKeyCodes/keyboard.js")(upCode);
+let downKey = require("./jsKeyCodes/keyboard.js")(downCode);
+let leftKey = require("./jsKeyCodes/keyboard.js")(leftCode);
+let rightKey = require("./jsKeyCodes/keyboard.js")(rightCode);
+
+
 module.exports = (customKeys) => {
-    let inputs = {
-        x: 0,
-        y: 0
-    };
+    let direction = -1; //numpad notation based direction
 
     if (Array.isArray(customKeys)){
 
     };
 
     if (upKey.isDown){
-        console.log("You're pressing upkey!!!");
-        inputs.y = -1;
+        direction = 8;
     };
 
-    return inputs;
+    if (downKey.isDown){
+        direction = 2;
+    };
+
+    if (leftKey.isDown){
+        direction = 4;
+    };
+
+    if (rightKey.isDown){
+        direction = 6;
+    };
+    return direction;
 }
