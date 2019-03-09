@@ -90,7 +90,7 @@ gameMap.prototype.processSnake = function(snake){
 
 
             }
-            console.log("head is:", node);
+            //console.log("head is:", node);
             let yOffset = node.y + node.dy;
             let xOffset = node.x + node.dx;
             const notInBounds = (node.x < 0 || xOffset > 20 || node.y < 0 || yOffset > 17); //TODO: set explicit stage coordinates in config
@@ -104,7 +104,7 @@ gameMap.prototype.processSnake = function(snake){
             self.map[node.x][node.y] = 2;
         }
     });
-    console.log("Snake has been processed!!", snake.body[0].x, snake.body[0].y);
+    //console.log("Snake has been processed!!", snake.body[0].x, snake.body[0].y);
     return this; //check gameOver state afterwards
 }
 
@@ -114,7 +114,7 @@ gameMap.prototype.cleanMap = function(){
             return 0;
         });
     });
-    console.log("Map is cleaned!!");
+    //console.log("Map is cleaned!!");
     return this;
 }
 

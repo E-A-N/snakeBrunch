@@ -8,15 +8,16 @@ module.exports = (config, ctx) => {
     const snakeObj = require("./utilities/snakeObj.js")(config);
     const gameMap = require("./utilities/gameMap.js")(config);
     const renderer = require("./render.js")(ctx, config);
-
+    const gameInput = require("./utilities/gameInput.js");
     //Should always be called first
     const gameInit = (call) => {
         snakeObj.init();
         snakeObj.randomizePosition();
-        gameMap.cleanMap()
-             .generateFood()
-             .processSnake(snakeObj)
-        //     .printMatrix()
+        gameMap
+            .cleanMap()
+            .generateFood()
+            .processSnake(snakeObj)
+        //  .printMatrix()
 
         renderer
             .clean()
@@ -29,10 +30,10 @@ module.exports = (config, ctx) => {
         }
     }
 
-
-    const gameCycle = (call) => {
+    const gameUpdate = () => {
         requestAnimationFrame(gameCycle);
-        console.log("Starting Game Cycle!");
+        //console.log("Starting Game Cycle!");
+        let input = gameInput();
         //handle snake player
         snakeObj
             .setDirection(input)
@@ -50,15 +51,22 @@ module.exports = (config, ctx) => {
             .drawScore(score, level)
             .drawMap(gameMap);
 
-            if (typeof call === "function"){
-                call(snakeObj, gameMap);
-            }
+        if (typeof call === "function"){
+            call(snakeObj, gameMap);
+        };
+
+    }
+    const gameCycle = () => {
+        let second = 1000;
+        let fps    = 5;
+        setTimeout(gameUpdate, second/fps);
     };
+
     return {
         snake: snakeObj,
         map: gameMap,
         renderer: renderer,
         init: gameInit,
-        cycle: gameCycle
+        cycle: gameUpdate
     };
 };
