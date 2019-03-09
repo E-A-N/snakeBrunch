@@ -31,5 +31,6 @@ module.exports = (customKeys) => {
     if (rightKey.isDown){
         direction = 6;
     };
+
     return direction;
 }

@@ -59,7 +59,7 @@ module.exports = (config, ctx) => {
     const gameCycle = () => {
         let second = 1000;
         let fps    = 5;
-        setTimeout(gameUpdate, second/fps);
+        return setTimeout(gameUpdate, second/fps);
     };
 
     return {
