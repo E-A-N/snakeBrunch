@@ -8,29 +8,73 @@ let downKey = require("./jsKeyCodes/keyboard.js")(downCode);
 let leftKey = require("./jsKeyCodes/keyboard.js")(leftCode);
 let rightKey = require("./jsKeyCodes/keyboard.js")(rightCode);
 
+//
+let gameControls = {};
+gameControls.currentInput = -1;
+gameControls.inputs = {
+    up: {
+        button: upKey,
+        numbercode: 8
+    },
+    down: {
+        button: downKey,
+        numbercode: 2
+    },
+    left: {
+        button: leftKey,
+        numbercode: 4
+    },
+    right: {
+        button: rightKey,
+        numbercode: 6
+    }
+};
 
-module.exports = (customKeys) => {
-    let direction = -1; //numpad notation based direction
-
-    if (Array.isArray(customKeys)){
-
-    };
-
-    if (upKey.isDown){
-        direction = 8;
-    };
-
-    if (downKey.isDown){
-        direction = 2;
-    };
-
-    if (leftKey.isDown){
-        direction = 4;
-    };
-
-    if (rightKey.isDown){
-        direction = 6;
-    };
-
-    return direction;
+gameControls.assignInputCommands = (call) => {
+    let ins = Object.keys(gameControls.inputs);
+    ins.forEach((input) => {
+        gameControls.inputs[input].button.press = () => {
+            gameControls.currentInput = gameControls.inputs[input].numbercode;
+        }
+    });
 }
+
+gameControls.getLastValidInput = () => {
+    return gameControls.currentInput;
+}
+
+gameControls.init = (customKeys) => {
+    if (Array.isArray(customKeys)){
+        //assign custom keys here
+    };
+    gameControls.assignInputCommands();
+
+    return gameControls;
+};
+
+module.exports = gameControls.init;
+// module.exports = (customKeys) => {
+//     let direction = -1; //numpad notation based direction
+//
+//     if (Array.isArray(customKeys)){
+//
+//     };
+//
+//     if (upKey.isDown){
+//         direction = 8;
+//     };
+//
+//     if (downKey.isDown){
+//         direction = 2;
+//     };
+//
+//     if (leftKey.isDown){
+//         direction = 4;
+//     };
+//
+//     if (rightKey.isDown){
+//         direction = 6;
+//     };
+//
+//     return direction;
+// }

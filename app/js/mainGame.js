@@ -8,7 +8,7 @@ module.exports = (config, ctx) => {
     const snakeObj = require("./utilities/snakeObj.js")(config);
     const gameMap = require("./utilities/gameMap.js")(config);
     const renderer = require("./render.js")(ctx, config);
-    const gameInput = require("./utilities/gameInput.js");
+    const gameInput = require("./utilities/gameInput.js")();
     //Should always be called first
     const gameInit = (call) => {
         snakeObj.init();
@@ -33,7 +33,7 @@ module.exports = (config, ctx) => {
     const gameUpdate = () => {
         requestAnimationFrame(gameCycle);
         //console.log("Starting Game Cycle!");
-        let input = gameInput();
+        let input = gameInput.getLastValidInput();
         //handle snake player
         snakeObj
             .setDirection(input)
