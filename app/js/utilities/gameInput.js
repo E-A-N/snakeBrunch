@@ -29,7 +29,6 @@ gameControls.inputs = {
         numbercode: 6
     }
 };
-
 gameControls.assignInputCommands = (call) => {
     let ins = Object.keys(gameControls.inputs);
     ins.forEach((input) => {
@@ -38,11 +37,9 @@ gameControls.assignInputCommands = (call) => {
         }
     });
 }
-
 gameControls.getLastValidInput = () => {
     return gameControls.currentInput;
 }
-
 gameControls.init = (customKeys) => {
     if (Array.isArray(customKeys)){
         //assign custom keys here
@@ -53,28 +50,3 @@ gameControls.init = (customKeys) => {
 };
 
 module.exports = gameControls.init;
-// module.exports = (customKeys) => {
-//     let direction = -1; //numpad notation based direction
-//
-//     if (Array.isArray(customKeys)){
-//
-//     };
-//
-//     if (upKey.isDown){
-//         direction = 8;
-//     };
-//
-//     if (downKey.isDown){
-//         direction = 2;
-//     };
-//
-//     if (leftKey.isDown){
-//         direction = 4;
-//     };
-//
-//     if (rightKey.isDown){
-//         direction = 6;
-//     };
-//
-//     return direction;
-// }

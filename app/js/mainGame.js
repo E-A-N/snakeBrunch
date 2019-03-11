@@ -9,6 +9,13 @@ module.exports = (config, ctx) => {
     const gameMap = require("./utilities/gameMap.js")(config);
     const renderer = require("./render.js")(ctx, config);
     const gameInput = require("./utilities/gameInput.js")();
+    const referee   = require("./utilities/referee.js");
+
+    referee
+        .addParticipant(snakeObj)
+        .addParticipant(gameMap)
+        
+
     //Should always be called first
     const gameInit = (call) => {
         snakeObj.init();
