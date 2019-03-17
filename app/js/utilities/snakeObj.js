@@ -6,6 +6,13 @@ const snakeObj = function(config){
     this.dx = 0;
     this.dy = 0;
     this.direction = 5;
+    this.directionStates = {
+        up: 8,
+        down: 2,
+        left: 4,
+        right: 6,
+        neutral: 5
+    };
 };
 
 snakeObj.prototype.init = function(){
@@ -86,32 +93,42 @@ snakeObj.prototype.move = function(call){
     return this;
 };
 snakeObj.prototype.setDirection = function (direction, call){
+    let states = this.directionStates;
     switch(direction){
-        case 8:
-            this.body[0].dx = 0;
-            this.body[0].dy = -1;
-            this.direction = direction;
+        case states.up:
+                if (this.direction !== states.down){
+                    this.body[0].dx = 0;
+                    this.body[0].dy = -1;
+                    this.direction = direction;
+                }
         break;
 
-        case 2:
-            this.body[0].dx = 0;
-            this.body[0].dy = 1;
-            this.direction = direction;
+        case states.down:
+                if (this.direction !== states.up){
+                    this.body[0].dx = 0;
+                    this.body[0].dy = 1;
+                    this.direction = direction;
+                }
         break;
 
-        case 4:
-            this.body[0].dx = -1;
-            this.body[0].dy = 0;
-            this.direction = direction;
+        case states.left:
+                if (this.direction !== states.right){
+                    this.body[0].dx = -1;
+                    this.body[0].dy = 0;
+                    this.direction = direction;
+                }
         break;
 
-        case 6:
-            this.body[0].dx = 1;
-            this.body[0].dy = 0;
-            this.direction = direction;
+        case states.right:
+                if (this.direction !== states.left) {
+                    this.body[0].dx = 1;
+                    this.body[0].dy = 0;
+                    this.direction = direction;
+                }
         break;
 
         case -1:
+        case states.netural:
             this.setDirection(this.direction);
         break;
     }

@@ -4,6 +4,16 @@ referee.rules = {
     gameOver: 1
 }
 referee.participants = [];
+referee.score = 0;
+referee.setScore = (value) => {
+    referee.score += value;
+
+    if (referee.score < 0){
+        referee.score = 0;
+    };
+
+    return referee;
+}
 referee.onGameOver = (call) => {
     call();
     window.location.relaod();

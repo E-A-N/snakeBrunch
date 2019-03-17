@@ -63,27 +63,24 @@ gameMap.prototype.processSnake = function(snake){
 
         let isSnakeHead = index === 0;
         if (isSnakeHead) {
-            const right = 0;
-            const left  = 1;
-            const up    = 2;
-            const down  = 3;
+            let states = snake.directionStates;
             switch(node.direction) {
-                case right:
+                case states.right:
                     node.dx = 1;
                     node.dy = 0;
                 break;
 
-                case left:
+                case states.left:
                     node.dx = -1;
                     node.dy = 0;
                 break;
 
-                case up:
+                case states.up:
                     node.dx = 0;
                     node.dy = -1;
                 break;
 
-                case down:
+                case states.down:
                     node.dx = 0;
                     node.dy = 1;
                 break;
