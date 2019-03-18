@@ -68,32 +68,3 @@ render.drawGameOver = (score) => {
 module.exports = (config, ctx) => {
     return render.init(config, ctx);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//

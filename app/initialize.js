@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const main = require("./js/mainGame.js")(config, stage);
   main.init();
   main.cycle();
-  console.log("Main is:", main);
   window._main = main; //TODO: for testing only
 
 
