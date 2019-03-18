@@ -18,7 +18,6 @@ module.exports = (config, ctx) => {
 
     //Should always be called first
     const gameInit = (call) => {
-        snakeObj.init();
         snakeObj.randomizePosition();
         gameMap
             .cleanMap()
