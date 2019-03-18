@@ -13,7 +13,9 @@ render.drawBorders = () => {
     render.ctx.strokeRect(...render.config.frameCoords);
     return render;
 };
-render.drawScore = (score, level) => {
+render.drawScore = (ref) => {
+    const score = ref.score;
+    const level = ref.level;
     const gCaption = `Score: ${score} ~ Level: ${level}`;
     render.ctx.fillText(gCaption, render.config.scoreBoard.xPos, render.config.scoreBoard.yPos);
     return render;
@@ -42,25 +44,26 @@ render.drawMap = (field) => {
 };
 render.drawGameOver = (score) => {
 
-  // Clear the canvas
-  render.ctx.fillStyle = 'black';
-  render.ctx.font = render.config.renderer.gameOverStyle;
-  const gameOverText = [
-      "Game Over!",
-      ((render.config.gameWdith /2) - (render.ctx.measureText("Game Over!").width/2)),
-      50
-  ];
-  render.ctx.fillText(...gameOverText);
+    // Clear the canvas
+    render.ctx.fillStyle = 'black';
+    render.ctx.font = render.config.renderer.gameOverStyle;
+    const gameOverText = [
+        "Game Over!",
+        ((render.config.gameWdith /2) - (render.ctx.measureText("Game Over!").width/2)),
+        50
+    ];
+    render.ctx.fillText(...gameOverText);
 
-  render.ctx.font = render.config.renderer.finalScoreStyle;
-  const finalScoreText = [
-      "Your Score Was " + score,
-      ((render.config.gameWidth /2) - (render.ctx.measureText("Yoiur Score Was").width/2)),
-      70
-  ];
-  render.ctx.fillText(...finalScoreText);
+    render.ctx.font = render.config.renderer.finalScoreStyle;
+    const finalScoreText = [
+        "Your Score Was " + score,
+        ((render.config.gameWidth /2) - (render.ctx.measureText("Your Score Was").width/2)),
+        70
+    ];
+    render.ctx.fillText(...finalScoreText);
+    console.log("Score has been drawn!!");
 
-  console.log("Score has been drawn!!");
+    return render;
 };
 module.exports = (config, ctx) => {
     return render.init(config, ctx);

@@ -1,17 +1,17 @@
 
 
 module.exports = (config, ctx) => {
-    var score = 7;
-    var level = 1;
-    var direction = 0;
 
-    const snakeObj = require("./utilities/snakeObj.js")(config);
-    const gameMap = require("./utilities/gameMap.js")(config);
-    const renderer = require("./render.js")(ctx, config);
+    const userHack  = require("./utilities/userHack.js")(config);
+    const snakeObj  = require("./utilities/snakeObj.js")(config);
+    const gameMap   = require("./utilities/gameMap.js")(config);
+    const renderer  = require("./render.js")(ctx, config);
     const gameInput = require("./utilities/gameInput.js")();
     const referee   = require("./utilities/referee.js");
 
+
     referee
+        .init(config)
         .addParticipant(snakeObj)
         .addParticipant(gameMap)
 
@@ -28,7 +28,7 @@ module.exports = (config, ctx) => {
         renderer
             .clean()
             .drawBorders()
-            .drawScore(score, level)
+            .drawScore(referee)
             .drawMap(gameMap);
 
         if (typeof call === "function"){
@@ -49,13 +49,14 @@ module.exports = (config, ctx) => {
         gameMap
             .cleanMap()
             .processFood()
-            .processSnake(snakeObj);
+            .processSnake(snakeObj)
+            .foodCollision(snakeObj, referee);
 
         //render game
         renderer
             .clean()
             .drawBorders()
-            .drawScore(score, level)
+            .drawScore(referee)
             .drawMap(gameMap);
 
         if (typeof call === "function"){

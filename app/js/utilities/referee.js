@@ -4,9 +4,17 @@ referee.rules = {
     gameOver: 1
 }
 referee.participants = [];
-referee.score = 0;
+referee.init = (config) => {
+    referee.score = 0;
+    referee.level = 1;
+    if (config.custom.hackable === true){
+        referee.level = config.custom.level || 1;
+    };
+
+    return referee;
+}
 referee.setScore = (value) => {
-    referee.score += value;
+    referee.score += value * referee.level;
 
     if (referee.score < 0){
         referee.score = 0;

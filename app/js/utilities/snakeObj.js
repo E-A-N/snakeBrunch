@@ -16,13 +16,13 @@ snakeObj.init = (config) => {
         neutral: 5
     };
     snakeObj.body = snakeObj.body.map( (part, order) => {
-        var x = typeof part.x === "undefined" ? 0 : part.x;
-        var y = typeof part.y === "undefined" ? 0 : part.y;
-        var attributes = {
+        let x = typeof part.x === "undefined" ? 0 : part.x;
+        let y = typeof part.y === "undefined" ? 0 : part.y;
+        let attributes = {
             x:x,
             y:y
        };
-       var isHead = order === 0;
+       let isHead = order === 0;
        if (isHead){
             //Add special property for head node
            attributes.direction = 0;
@@ -38,8 +38,8 @@ snakeObj.init = (config) => {
 snakeObj.randomizePosition = () => {
     const cols = snakeObj.config.gameMap.columns;
     const rows = snakeObj.config.gameMap.rows;
-    var randomX = Math.round(Math.random() * cols - 1);
-    var randomY = Math.round(Math.random() * rows - 1);
+    let randomX = Math.round(Math.random() * cols - 1);
+    let randomY = Math.round(Math.random() * rows - 1);
     //Make sure random coordinates are withing range of the array
     randomX = randomX < 0 ? 0 : randomX;
     randomY = randomY < 0 ? 0 : randomY;
@@ -137,6 +137,16 @@ snakeObj.setDirection = (direction, call) => {
 
     return snakeObj;
 };
+snakeObj.appendNode = () => {
+    const size = snakeObj.body.length;
+    snakeObj.body.push({
+        x: snakeObj.body[size - 1].x,
+        y: snakeObj.body[size - 1].y
+    });
+
+    console.log("body exteneded!!");
+    return snakeObj;
+}
 
 module.exports = (config) => {
     return snakeObj.init(config);

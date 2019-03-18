@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // do your setup here
   console.log('Initialized app');
 
-  const config = require("./js/gConfig.js");
+  const config = require("./js/config.js");
   const stage = require("./js/stageUI.js")(config);
 
   const main = require("./js/mainGame.js")(config, stage);

@@ -4,17 +4,9 @@ gameMap.init = (config) => {
     gameMap.map = gameMap.map.map((n) => {
         return [...Array(config.gameMap.rows).keys()];
     });
-    gameMap.legend = {
-        empty: 0,
-        food: 1,
-        snakeHead: 2,
-        snakeBody: 3
-    }
-    gameMap.foodPosition = null;
-    gameMap.states = {
-        gamePlay: 0,
-        gameOver: 1
-    };
+    gameMap.legend = config.gameMap.legend;
+    gameMap.foodPosition = config.gameMap.foodPosition;
+    gameMap.states = config.gameMap.states;
     gameMap.currentState = gameMap.states.gamePlay;
 
     gameMap.config = config;
@@ -106,7 +98,7 @@ gameMap.processSnake = (snake) => {
             //console.log("head is:", node);
             let yOffset = node.y + node.dy;
             let xOffset = node.x + node.dx;
-            const notInBounds = (node.x < 0 || xOffset > 20 || node.y < 0 || yOffset > 17); //TODO: set explicit stage coordinates in config
+            const notInBounds = (node.x < 0 || xOffset > 20 || node.y < 0 || yOffset > 18); //TODO: set explicit stage coordinates in config
             if (notInBounds){
                 console.log("Game over!");
                 gameMap.currentState = gameMap.states.gameOver;
@@ -120,7 +112,25 @@ gameMap.processSnake = (snake) => {
     //console.log("Snake has been processed!!", snake.body[0].x, snake.body[0].y);
     return gameMap; //check gameOver state afterwards
 }
+gameMap.foodCollision = (snakeObj, ref) => {
+    if (gameMap.currentState === gameMap.states.gamePlay) {
+        let snake = snakeObj.body[0];
+        let foodY = gameMap.foodPosition[1];
+        let foodX = gameMap.foodPosition[0];
 
+        if (gameMap.map[snake.y][snake.x] === gameMap.map[foodY][foodX]){
+            gameMap.map[foodY][foodX] = gameMap.legend.empty;
+            gameMap.generateFood();
+            snakeObj.appendNode();
+            let refereeExists = typeof ref !== "undefined" && ref !== null && typeof ref === "object";
+            if (refereeExists){
+                ref.setScore(1);
+            }
+        }
+    }
+
+    return gameMap;
+};
 gameMap.cleanMap = () => {
     gameMap.map = gameMap.map.map(x => {
         return x.map( y => {

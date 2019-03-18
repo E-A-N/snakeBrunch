@@ -26,10 +26,6 @@ const config = {
         xPos: scoreX,
         yPos: scoreY
     },
-    gameMap :{
-        rows: height / 10,
-        columns: width / 10
-    },
     snakeObj:{
         defaultSize: 3
     },
@@ -51,6 +47,26 @@ const config = {
         gameOverStyle: '16px Arial',
         finalScoreStyle: "20px sans-serif"
     }
+};
+
+config.gameMap = {
+    rows: height / 10,
+    columns: width / 10,
+    legend: {
+        empty: 0,
+        food:  1,
+        snakeHead: 2,
+        snakeBody: 3
+    },
+    states: {
+        gamePlay: 0,
+        gameOver: 1
+    },
+    foodPosition: - 1
+}
+
+config.custom = {
+    hackable: true
 }
 
 module.exports = config;
