@@ -9,6 +9,8 @@
 <body>
     Ean's Snake Hack Game!
     <script>
-        window.location.href = "https://e-a-n.github.io/snakeBrunch/public/index.html";
+        //redirect to public directory with query string
+        var query = new URLSearchParams(window.location.search).toString();
+        window.location.href = "https://e-a-n.github.io/snakeBrunch/public/index.html" + query.toString();
     </script>
 </body>
