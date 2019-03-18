@@ -5,8 +5,8 @@
    * Example: ```https://e-a-n.github.io/snakeBrunch/?level=999&foodColor=blue```
 
 ## How to run Game:
-   * Clone repository
-   * run `npm install` in command line
+   * clone repository
+   * run `npm install` in command line environment, make sure you're in the cloned repository
    * `npm start` *or* `brunch watch` if nodejs is installed
    * Open a browser and go to http//:127.0.0.1:3333 *or* localhost:3333
 
