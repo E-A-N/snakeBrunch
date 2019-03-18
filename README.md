@@ -1,5 +1,11 @@
-## How to run:
-   * `npm start` *or* `brunch watch`
+## Query String API
+   * `level` number that reflects current player level (evetually effecting score and game speed)
+   * `snakeColor` keystring that updates color of the snake
+   * `foodColor` keystring that updates color of the food
+   * Example: ```http//:127.0.0.1:3333/?level=999&snakeColor=red&foodColor=blue```
+
+## How to run Game:
+   * `npm start` *or* `brunch watch` if nodejs is installed
    * Open a browser and go to http//:127.0.0.1:3333 *or* localhost:3333
 
 ## How to add a js module
@@ -20,15 +26,3 @@
    * add the html files in app/static/ directory
    * images should be placed in app/static/assets/img
    * audio should be placed in app/static/assets/audio
-
-
-# API
-Snake Movement:
-```javascript
-    //input movement to snake,
-    snake.move(direction);
-    //store the new coordinates in the gamemap
-    gameMap.processSnake(snake);
-    //render the gameMap
-    renderer.drawMap(gameMap);
-```
