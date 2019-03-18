@@ -22,13 +22,8 @@
    * audio should be placed in app/static/assets/audio
 
 
-# API
-Snake Movement:
-```javascript
-    //input movement to snake,
-    snake.move(direction);
-    //store the new coordinates in the gamemap
-    gameMap.processSnake(snake);
-    //render the gameMap
-    renderer.drawMap(gameMap);
-```
+## Query String API
+   * `level` number that reflects current player level (evetually effecting score and game speed)
+   * `snakeColor` keystring that updates color of the snake
+   * `foodColor` keystring that updates color of the food
+   * Example: ```snakeGame.com/?level=999&snakeColor=red&foodColor=blue```
