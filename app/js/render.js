@@ -19,17 +19,20 @@ render.prototype.drawScore = function(score, level){
 render.prototype.drawMap = function(field){
     //Render the game object
     const self = this;
-    field.map.map( (col, x) => {
-        col.map( (row, y) => {
-            let coord = field.map[x][y];
+    field.map.map( (row, y) => {
+        row.map( (col, x) => {
+            let coord = field.map[y][x];
             if (coord === 0) return;
 
             let block = self.config.renderer.blockSize;
             let yBoundry = Math.min(y * block + self.config.renderer.yOffset, self.config.renderer.yBoundry);
             let xBoundry = Math.min(x * block + self.config.renderer.xOffset, self.config.renderer.xBoundry);
             let blockGraphic = [xBoundry, yBoundry, block, block];
-
-            self.ctx.fillStyle = coord === 1 ? self.config.renderer.foodColor : self.config.renderer.snakeColor;
+            let style = self.config.renderer.snakeColor;
+            if (coord === field.legend.food){
+                style = self.config.renderer.foodColor
+            }
+            self.ctx.fillStyle = style;
             self.ctx.fillRect(...blockGraphic);
         });
     });

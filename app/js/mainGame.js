@@ -14,7 +14,7 @@ module.exports = (config, ctx) => {
     referee
         .addParticipant(snakeObj)
         .addParticipant(gameMap)
-        
+
 
     //Should always be called first
     const gameInit = (call) => {
@@ -49,6 +49,7 @@ module.exports = (config, ctx) => {
         //Process prepare map coordinates for renderer
         gameMap
             .cleanMap()
+            .processFood()
             .processSnake(snakeObj);
 
         //render game
