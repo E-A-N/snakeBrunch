@@ -2,9 +2,11 @@
    * `level` number that reflects current player level (evetually effecting score and game speed)
    * `snakeColor` keystring that updates color of the snake
    * `foodColor` keystring that updates color of the food
-   * Example: ```http//:127.0.0.1:3333/?level=999&snakeColor=red&foodColor=blue```
+   * Example: ```https://e-a-n.github.io/snakeBrunch/?level=999&foodColor=blue```
 
 ## How to run Game:
+   * Clone repository
+   * run `npm install` in command line
    * `npm start` *or* `brunch watch` if nodejs is installed
    * Open a browser and go to http//:127.0.0.1:3333 *or* localhost:3333
 
