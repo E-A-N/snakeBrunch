@@ -1,3 +1,7 @@
+<h1>
+  <a href=https://e-a-n.github.io/snakeBrunch/> Play it!! </a>
+</h1>
+
 ## Query String API
    * `level` number that reflects current player level (evetually effecting score and game speed)
    * `snakeColor` keystring that updates color of the snake
