@@ -1,68 +1,69 @@
-const render = function(ctx, config) {
-    this.ctx = ctx;
-    this.config = config;
+const render = {};
+render.init = (ctx, config) => {
+    render.ctx = ctx;
+    render.config = config;
+    return render;
 };
-render.prototype.clean = function(){
-     this.ctx.clearRect(0, 0, this.config.gameWidth, this.config.gameHeight);
-     return this;
+render.clean = () => {
+     render.ctx.clearRect(0, 0, render.config.gameWidth, render.config.gameHeight);
+     return render;
 }
-render.prototype.drawBorders = function(){
+render.drawBorders = () => {
     //Draw the game border
-    this.ctx.strokeRect(...this.config.frameCoords);
-    return this;
+    render.ctx.strokeRect(...render.config.frameCoords);
+    return render;
 };
-render.prototype.drawScore = function(score, level){
+render.drawScore = (score, level) => {
     const gCaption = `Score: ${score} ~ Level: ${level}`;
-    this.ctx.fillText(gCaption, this.config.scoreBoard.xPos, this.config.scoreBoard.yPos);
-    return this;
+    render.ctx.fillText(gCaption, render.config.scoreBoard.xPos, render.config.scoreBoard.yPos);
+    return render;
 }
-render.prototype.drawMap = function(field){
+render.drawMap = (field) => {
     //Render the game object
-    const self = this;
     field.map.map( (row, y) => {
         row.map( (col, x) => {
             let coord = field.map[y][x];
             if (coord === 0) return;
 
-            let block = self.config.renderer.blockSize;
-            let yBoundry = Math.min(y * block + self.config.renderer.yOffset, self.config.renderer.yBoundry);
-            let xBoundry = Math.min(x * block + self.config.renderer.xOffset, self.config.renderer.xBoundry);
+            let block = render.config.renderer.blockSize;
+            let yBoundry = Math.min(y * block + render.config.renderer.yOffset, render.config.renderer.yBoundry);
+            let xBoundry = Math.min(x * block + render.config.renderer.xOffset, render.config.renderer.xBoundry);
             let blockGraphic = [xBoundry, yBoundry, block, block];
-            let style = self.config.renderer.snakeColor;
+            let style = render.config.renderer.snakeColor;
             if (coord === field.legend.food){
-                style = self.config.renderer.foodColor
+                style = render.config.renderer.foodColor
             }
-            self.ctx.fillStyle = style;
-            self.ctx.fillRect(...blockGraphic);
+            render.ctx.fillStyle = style;
+            render.ctx.fillRect(...blockGraphic);
         });
     });
 
-    return this;
+    return render;
 };
-render.prototype.drawGameOver = function(score){
+render.drawGameOver = (score) => {
 
   // Clear the canvas
-  this.ctx.fillStyle = 'black';
-  this.ctx.font = this.config.renderer.gameOverStyle;
+  render.ctx.fillStyle = 'black';
+  render.ctx.font = render.config.renderer.gameOverStyle;
   const gameOverText = [
       "Game Over!",
-      ((this.config.gameWdith /2) - (this.ctx.measureText("Game Over!").width/2)),
+      ((render.config.gameWdith /2) - (render.ctx.measureText("Game Over!").width/2)),
       50
   ];
-  this.ctx.fillText(...gameOverText);
+  render.ctx.fillText(...gameOverText);
 
-  this.ctx.font = this.config.renderer.finalScoreStyle;
+  render.ctx.font = render.config.renderer.finalScoreStyle;
   const finalScoreText = [
       "Your Score Was " + score,
-      ((this.config.gameWidth /2) - (this.ctx.measureText("Yoiur Score Was").width/2)),
+      ((render.config.gameWidth /2) - (render.ctx.measureText("Yoiur Score Was").width/2)),
       70
   ];
-  this.ctx.fillText(...finalScoreText);
+  render.ctx.fillText(...finalScoreText);
 
   console.log("Score has been drawn!!");
 };
 module.exports = (config, ctx) => {
-    return new render(config, ctx);
+    return render.init(config, ctx);
 }
 
 

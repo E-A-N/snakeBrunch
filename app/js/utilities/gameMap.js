@@ -114,7 +114,7 @@ gameMap.processSnake = (snake) => {
         }
 
         if (gameMap.currentState === gameMap.states.gamePlay) {
-            gameMap.map[node.y][node.x] = 2;
+            gameMap.map[node.y][node.x] = gameMap.legend.snakeHead;
         }
     });
     //console.log("Snake has been processed!!", snake.body[0].x, snake.body[0].y);
